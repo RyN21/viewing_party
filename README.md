@@ -7,6 +7,12 @@ This is the base repo for the viewing party project used for Turing's Backend Mo
 
 Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
 
+## Contributors
+
+Michael Alex Lynch
+Ryan Laleh
+Norma Lopez
+
 ## Local Setup
 
 1. Fork and Clone the repo
