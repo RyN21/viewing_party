@@ -6,6 +6,5 @@ RSpec.describe "Welcome page" do
 
       expect(page).to have_content("Welcome to the Viewing Party!")
       expect(page).to have_content("This app streamlines your video watching experience!")
-      expect(page).to have_link("Login")
   end
 end
