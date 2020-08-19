@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootsnap'
 gem 'jbuilder', '~> 2.5'
 gem 'figaro'
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+gem 'faraday'
 
 group :development, :test do
   gem 'pry'
@@ -27,7 +30,6 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails'
   gem 'travis'
-  gem 'omniauth-google-oauth2'
 end
 
 group :test do
