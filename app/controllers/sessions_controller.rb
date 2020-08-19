@@ -1,20 +1,15 @@
 class SessionsController < ApplicationController
-  def omniauth
-    @user = User.from_omniauth(auth)
-    @user.save
-    session[:user_id] = @user.id
-    redirect_to '/user'
-  end
-
-  def destroy
-    session.delete(:user_id)
-    flash[:success] = 'You have successfully logged out!'
-    redirect_to '/'
-  end
-
-  private
-
-  def auth
-    request.env['omniauth.auth']
+  def create
+    access_token = request.env["omniauth.auth"]
+    user = User.from_omniauth(access_token)
+    session[:user_id] = user.id
+    user.google_token = access_token.credentials.token
+    refresh_token = access_token.credentials.refresh_token
+    user.google_refresh_token = refresh_token if refresh_token.present?
+    user.save
+    redirect_to root_path
+    binding.pry
   end
 end
+
+# current uer in application record
