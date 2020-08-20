@@ -1,8 +1,9 @@
 class User::DiscoverController < ApplicationController
   def index
-    conn = Faraday.new('https://api.themoviedb.org/3') do |f|
-      f.params['api_key'] = ENV['MOVIE_API_KEY']
+    conn = Faraday.get('https://api.themoviedb.org/3/movie/30') do |f|
+      f.params['api_key'] = ENV['MOVIE_KEY']
     end
-    conn
+    require "pry"; binding.pry
+    # conn
   end
 end
