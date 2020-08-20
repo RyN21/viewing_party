@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   # get 'auth/:provider/callback', to: 'sessions#googleAuth'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
+  namespace :user do
+    get '/', to: 'dashboard#index'
+  end
 end
