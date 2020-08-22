@@ -4,6 +4,7 @@ class User::DiscoverController < ApplicationController
       f.params['api_key'] = ENV['MOVIE_KEY']
     end
     json = JSON.parse(response.body, symbolize_names: true)
+    @top_rated_movies = json[:results]
   end
 
   def movie_search
@@ -18,5 +19,6 @@ class User::DiscoverController < ApplicationController
   end
 
   def index
+
   end
 end
