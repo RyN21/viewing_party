@@ -9,5 +9,8 @@ Rails.application.routes.draw do
   namespace :user do
     get '/', to: 'dashboard#index'
     get '/discover', to: 'discover#index'
+    get '/search/movie', to: 'discover#movie_search'
+    get '/movies', to: 'movies#index'
+    get 'movies/:id', to: 'movies#show'
   end
 end
