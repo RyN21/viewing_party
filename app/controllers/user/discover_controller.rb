@@ -18,7 +18,5 @@ class User::DiscoverController < ApplicationController
     @movie_results = json[:results]
   end
 
-  def index
-
-  end
+  def index; end
 end
