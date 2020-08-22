@@ -2,7 +2,7 @@ class User::SearchController < ApplicationController
   def index
     search_results = SearchResults.new
     @top_rated_movies = search_results.top_rated_movies
-    @movie_results = search_results.movie_results
+    @movie_search = search_results.movie_search
   end
   # def top_rated
   #   response = Faraday.get('https://api.themoviedb.org/3/movie/top_rated') do |f|
