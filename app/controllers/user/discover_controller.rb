@@ -5,6 +5,7 @@ class User::DiscoverController < ApplicationController
     end
     json = JSON.parse(response.body, symbolize_names: true)
     @top_rated_movies = json[:results]
+    redirect_to 'user/search'
   end
 
   def movie_search
