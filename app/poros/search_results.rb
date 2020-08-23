@@ -11,7 +11,6 @@ class SearchResults
   def movie_search(search_query)
     if search_query != nil
       response = conn.get('search/movie') do |f|
-        f.params['api_key'] = ENV['MOVIE_KEY']
         f.params['query'] = search_query
       end
       json = JSON.parse(response.body, symbolize_names: true)
