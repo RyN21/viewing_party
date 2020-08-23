@@ -1,7 +1,7 @@
-<%= link_to 'Find Top Rated Movies', "/user/search/top_rated" %><br>
+<%= link_to 'Find Top Rated Movies', "/user/movies", method: :get %><br>
 </br>
-<%= form_tag "/user/search/movie", method: :get do %>
-  <%= label_tag :search_movie %><br>
-  <%= search_field_tag :search_movie %><br>
+<%= form_tag "/user/movies", method: :get do %>
+  <%= label_tag :search_movies %><br>
+  <%= search_field_tag :search_query %><br>
   <%= submit_tag 'Find Movies' %>
 <% end %>
