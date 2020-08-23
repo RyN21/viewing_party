@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   protect_from_forgery with: :exception
 
   def create
-    if params.include?(:friend_id) # individual e.g. "Add friend" link
+    if params.include?(:friend_id)
       @new_friendships = Friendship.create_reciprocal_for_ids(current_user_id, params[:friend_id])
     else
       params[:user][:friend_ids].each do |f_id|
