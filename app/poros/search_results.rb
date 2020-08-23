@@ -10,14 +10,13 @@ class SearchResults
   # end
   #
   def movie_search(search_query)
-
     response = conn.get('search/movie') do |f|
       f.params['api_key'] = ENV['MOVIE_KEY']
       f.params['query'] = search_query
     end
-    json = JSON.parse(response.body, symbolize_names: true)    
+    json = JSON.parse(response.body, symbolize_names: true)
     @movie_results = json[:results].map do |movie_result|
-      Movie.new(movie_result)
+      @movie = Movie.new(movie_result)
     end
   end
   #
