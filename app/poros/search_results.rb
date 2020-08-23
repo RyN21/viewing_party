@@ -1,21 +1,31 @@
 class SearchResults
-  def top_rated
-    response = Faraday.get('https://api.themoviedb.org/3/movie/top_rated') do |f|
+  # def top_rated
+  #   response = conn.get('movie/top_rated') do |f|
+  #   end
+  #   json = JSON.parse(response.body, symbolize_names: true)
+  #   @top_rated_movies = json[:results].map do |top_rated_movie|
+  #     Movie.new(top_rated_movie)
+  #   # redirect_to 'user/search'
+  #   end
+  # end
+  #
+  def movie_search(search_query)
+
+    response = conn.get('search/movie') do |f|
       f.params['api_key'] = ENV['MOVIE_KEY']
+      f.params['query'] = search_query
     end
-    json = JSON.parse(response.body, symbolize_names: true)
-    @top_rated_movies = json[:results]
-    redirect_to 'user/search'
+    json = JSON.parse(response.body, symbolize_names: true)    
+    @movie_results = json[:results].map do |movie_result|
+      Movie.new(movie_result)
+    end
   end
-
-  def movie_search
-    @movie = params[:search_movie]
-
-    response = Faraday.get('https://api.themoviedb.org/3/search/movie') do |f|
-      f.params['api_key'] = ENV['MOVIE_KEY']
-      f.params['query'] = @movie
+  #
+  #   private
+  #
+    def conn
+      Faraday.new('https://api.themoviedb.org/3/') do |f|
+        f.params['api_key'] = ENV['MOVIE_KEY']
     end
-    json = JSON.parse(response.body, symbolize_names: true)
-    @movie_results = json[:results]
   end
 end
