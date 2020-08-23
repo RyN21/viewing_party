@@ -7,4 +7,13 @@ RSpec.describe "Welcome page" do
       expect(page).to have_content("Welcome to the Viewing Party!")
       expect(page).to have_content("This app streamlines your video watching experience!")
   end
+
+  it "I can sign in with Google account" do
+    visit root_path
+    expect(page).to have_content("Login with Google")
+    mock_auth_hash
+    click_link "Login with Google"
+    expect(current_path).to eq(user_path)
+    expect(page).to have_content("person@example.com")
+  end
 end
