@@ -5,7 +5,6 @@ class SearchResults
     json = JSON.parse(response.body, symbolize_names: true)
     @top_rated_movies = json[:results].map do |top_rated_movie|
       Movie.new(top_rated_movie)
-    # redirect_to 'user/search'
     end
   end
 

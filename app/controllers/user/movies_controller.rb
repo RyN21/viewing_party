@@ -35,8 +35,4 @@ class User::MoviesController < ApplicationController
       f.params['api_key'] = ENV['MOVIE_KEY']
     end
   end
-
-  def get_json
-    JSON.parse(response.body, symbolize_names: true)
-  end
 end
