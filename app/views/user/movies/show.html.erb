@@ -31,4 +31,9 @@
 <% end %>
 </ul>
   <h2>Reviews</h2>
+  <h3>Review Count: <%= @reviews[:total_results] %></h3>
+  <% @reviews[:results].each do |review| %>
+  <b><p>Author: <%= review[:author] %></p></b>
+  <p><%= review[:content] %></p>
+  <% end %>
 <ul>
