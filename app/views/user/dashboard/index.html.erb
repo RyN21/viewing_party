@@ -3,7 +3,11 @@
 <%= link_to "Discover Movies", "/user/discover" %>
 
 <h3>Friends</h3>
-# @friends.each do
+
+<%= form_tag(user_path, method: "post") do %>
+  <%= collection_check_boxes(:user, :friend_ids, @nonfriends, :id, :username_with_full_name)%>
+  <%= submit_tag("Add Friends")%>
+<%end%>
 
 <h3>Viewing Parties</h3>
 # @viewing_parties.each do
