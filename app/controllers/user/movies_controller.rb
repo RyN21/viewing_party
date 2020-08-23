@@ -21,7 +21,6 @@ class User::MoviesController < ApplicationController
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
     end
-
     @review = JSON.parse(review_response.body, symbolize_names: true)
   end
 

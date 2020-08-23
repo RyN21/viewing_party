@@ -16,7 +16,7 @@ class SearchResults
       end
       json = JSON.parse(response.body, symbolize_names: true)
       @movie_results = json[:results].map do |movie_result|
-        @movie = Movie.new(movie_result)
+        Movie.new(movie_result)
       end
     end
   end
