@@ -3,9 +3,11 @@
     <h1>Movie Search Results</h1>
       </br>
     <% @movie_search.each do |movie| %>
-    <p><%= link_to "#{movie.title}", "/user/movies/#{movie.id}" %> Vote Average: <%= movie.vote_average %></p>
-  <% end %>
+      <p><%= link_to "#{movie.title}", "/user/movies/#{movie.id}" %> Vote Average: <%= movie.vote_average %></p>
+    <% end %>
   <% else %>
-  <h1>Top Rated Movies</h1>
-  <% binding.pry %>
+    <h1>Top Rated Movies</h1>
+  <% @top_rated_movies.each do |top_rated_movie| %>
+    <p><%= link_to "#{top_rated_movie.title}", "/user/movies/#{top_rated_movie.id}" %> Vote Average: <%= top_rated_movie.vote_average %></p>
+  <% end %>
 <% end %>
