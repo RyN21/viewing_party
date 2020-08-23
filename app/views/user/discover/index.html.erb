@@ -1,4 +1,4 @@
-<%= link_to 'Find Top Rated Movies', "/user/search" %><br>
+<%= link_to 'Find Top Rated Movies', "/user/movies", method: :get %><br>
 </br>
 <%= form_tag "/user/movies", method: :get do %>
   <%= label_tag :search_movies %><br>

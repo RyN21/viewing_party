@@ -1,5 +1,11 @@
-<h1>Movie Search Results</h1>
 
-<% @movie_search.each do |movie| %>
-<p><%= link_to "#{movie.title}", "/user/movies/#{movie.id}" %> Vote Average: <%= movie.vote_average %></p>
+<% if @movie_search != nil %>
+    <h1>Movie Search Results</h1>
+      </br>
+    <% @movie_search.each do |movie| %>
+    <p><%= link_to "#{movie.title}", "/user/movies/#{movie.id}" %> Vote Average: <%= movie.vote_average %></p>
+  <% end %>
+  <% else %>
+  <h1>Top Rated Movies</h1>
+  <% binding.pry %>
 <% end %>

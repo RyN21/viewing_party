@@ -1,8 +1,8 @@
 class User::MoviesController < ApplicationController
   def index
     search_results = SearchResults.new
-    # @top_rated_movies = search_results.top_rated
     search_query = params[:search_query]
+    @top_rated_movies = search_results.top_rated
     @movie_search = search_results.movie_search(search_query)
   end
 
