@@ -30,7 +30,8 @@ class User::MoviesController < ApplicationController
       f.params['api_key'] = ENV['MOVIE_KEY']
       f.params['movie_id'] = movie_id
     end
-    @movie = JSON.parse(response.body, symbolize_names: true)
+    movie_attributes = JSON.parse(response.body, symbolize_names: true)
+      @movie = Movie.new(movie_attributes)
   end
 
   def get_credits
@@ -39,7 +40,8 @@ class User::MoviesController < ApplicationController
       f.params['api_key'] = ENV['MOVIE_KEY']
       f.params['movie_id'] = movie_id
     end
-    @credit = JSON.parse(response.body, symbolize_names: true)
+    movie_attributes = JSON.parse(response.body, symbolize_names: true)
+      @movie = Movie.new(movie_attributes)
   end
 
   def get_reviews
@@ -48,6 +50,7 @@ class User::MoviesController < ApplicationController
       f.params['api_key'] = ENV['MOVIE_KEY']
       f.params['movie_id'] = movie_id
     end
-    @review = JSON.parse(response.body, symbolize_names: true)
+    movie_attributes = JSON.parse(response.body, symbolize_names: true)
+      @movie = Movie.new(movie_attributes)
   end
 end

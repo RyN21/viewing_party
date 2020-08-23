@@ -1,12 +1,14 @@
-<h1><%= @movie[:title] %></h1>
+<% binding.pry %>
+
+<h1><%= @movie.title %></h1>
 
 <h2>Summary</h2>
-<p><%= @movie[:overview] %></p>
+<p><%= @movie.overview %></p>
 
 <h2>Genres</h2>
 
 <ul>
-<% @movie[:genres].each do |genre| %>
+<% @movie.genres.each do |genre| %>
 <li>
   <%= genre[:name] %>
 </li>
@@ -14,19 +16,19 @@
 </ul>
 
 <h2>Average Rating</h2>
-<p><%= @movie[:vote_average] %>/10</p>
+<p><%= @movie.vote_average %>/10</p>
 
 <h2>Runtime</h2>
-<p><%= (@movie[:runtime] / 60) %> hr <%= (@movie[:runtime] % 60) %> min</p>
+<p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
 
 <h2>Total Votes</h2>
-<p><%= @movie[:vote_count] %></p>
+<p><%= @movie.vote_count %></p>
 
 <h2>Cast</h2>
 <ul>
-<% @credit[:cast].each do |cast| %>
+<% @credit.cast.each do |cast| %>
 <li>
-  <%= cast[:name] %> as <%= cast[:character] %>
+  <%= cast.name %> as <%= cast.character %>
 </li>
 <% end %>
 </ul>
