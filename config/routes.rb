@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     # get '/search', to: 'search#index'
     get '/discover', to: 'discover#index'
     get '/search/top_rated', to: 'discover#top_rated'
-    get '/search/movie', to: 'discover#movie_search'
     get '/movies', to: 'movies#index'
     get 'movies/:id', to: 'movies#show'
     get '/discover/top_rated', to: 'discover#top_rated'
