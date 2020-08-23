@@ -7,25 +7,9 @@ class User::MoviesController < ApplicationController
   end
 
   def show
-    movie_id = params[:id].to_i
-    movie_response = conn.get("movie/#{movie_id}") do |f|
-      f.params['api_key'] = ENV['MOVIE_KEY']
-      f.params['movie_id'] = movie_id
-    end
-
-    @movie = JSON.parse(movie_response.body, symbolize_names: true)
-    credit_response = conn.get("movie/#{movie_id}/credits") do |f|
-      f.params['api_key'] = ENV['MOVIE_KEY']
-      f.params['movie_id'] = movie_id
-    end
-
-    @credit = JSON.parse(credit_response.body, symbolize_names: true)
-    review_response = conn.get("movie/#{movie_id}/reviews") do |f|
-      f.params['api_key'] = ENV['MOVIE_KEY']
-      f.params['movie_id'] = movie_id
-    end
-
-    @review = JSON.parse(review_response.body, symbolize_names: true)
+    get_movies
+    get_credits
+    get_reviews
   end
 
   private
@@ -34,5 +18,36 @@ class User::MoviesController < ApplicationController
     Faraday.new('https://api.themoviedb.org/3/') do |f|
       f.params['api_key'] = ENV['MOVIE_KEY']
     end
+  end
+
+  def get_json
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def get_movies
+    movie_id = params[:id].to_i
+    response = conn.get("movie/#{movie_id}") do |f|
+      f.params['api_key'] = ENV['MOVIE_KEY']
+      f.params['movie_id'] = movie_id
+    end
+    @movie = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def get_credits
+    movie_id = params[:id].to_i
+    response = conn.get("movie/#{movie_id}/credits") do |f|
+      f.params['api_key'] = ENV['MOVIE_KEY']
+      f.params['movie_id'] = movie_id
+    end
+    @credit = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def get_reviews
+    movie_id = params[:id].to_i
+    response = conn.get("movie/#{movie_id}/reviews") do |f|
+      f.params['api_key'] = ENV['MOVIE_KEY']
+      f.params['movie_id'] = movie_id
+    end
+    @review = JSON.parse(response.body, symbolize_names: true)
   end
 end
