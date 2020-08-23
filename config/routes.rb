@@ -13,8 +13,5 @@ Rails.application.routes.draw do
     get 'movies/:id', to: 'movies#show'
 
     get '/discover', to: 'discover#index'
-
-    get '/movies', to: 'movies#index'
-
   end
 end
