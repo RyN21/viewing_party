@@ -2,6 +2,9 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
 
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
       user.name = auth.info.name
