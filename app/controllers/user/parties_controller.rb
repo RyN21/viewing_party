@@ -5,7 +5,8 @@ class User::PartiesController < ApplicationController
   end
 
   def create
-    @party = Party.create(party_params)
+    user = current_user
+    @party = user.parties.create(party_params)
     redirect_to '/user'
   end
 
