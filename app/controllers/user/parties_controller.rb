@@ -7,6 +7,7 @@ class User::PartiesController < ApplicationController
   def create
     user = current_user
     @party = user.parties.create(party_params)
+    require "pry"; binding.pry
     redirect_to '/user'
   end
 
