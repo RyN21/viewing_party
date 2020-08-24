@@ -1,39 +1,59 @@
+<%= form_tag "/user/movies", method: :get do %>
+  <%= label_tag :search_movies %><br>
+  <%= search_field_tag :search_query %><br>
+  <%= submit_tag 'Find Movies' %>
+<% end %>
+
 <h1><%= @movie[:title] %></h1>
 
-<h2>Summary</h2>
-<p><%= @movie[:overview] %></p>
+<div class="summary">
+  <h2>Summary</h2>
+  <p><%= @movie[:overview] %></p>
+</div>
 
-<h2>Genres</h2>
+<div class="genres">
+  <h2>Genres</h2>
 
-<ul>
-<% @movie[:genres].each do |genre| %>
-<li>
-  <%= genre[:name] %>
-</li>
-<% end %>
-</ul>
+  <ul>
+    <% @movie[:genres].each do |genre| %>
+    <li>
+      <%= genre[:name] %>
+    </li>
+    <% end %>
+  </ul>
+</div>
 
-<h2>Average Rating</h2>
-<p><%= @movie[:vote_average] %>/10</p>
+<div class="average-rating">
+  <h2>Average Rating</h2>
+  <p><%= @movie[:vote_average] %>/10</p>
+</div>
 
-<h2>Runtime</h2>
-<p><%= (@movie[:runtime] / 60) %> hr <%= (@movie[:runtime] % 60) %> min</p>
+<div class="runtime">
+  <h2>Runtime</h2>
+  <p><%= (@movie[:runtime] / 60) %> hr <%= (@movie[:runtime] % 60) %> min</p>
+</div>
 
-<h2>Total Votes</h2>
-<p><%= @movie[:vote_count] %></p>
+<div class="total-votes">
+  <h2>Total Votes</h2>
+  <p><%= @movie[:vote_count] %></p>
+</div>
 
-<h2>Cast</h2>
-<ul>
-<% @credit[:cast].each do |cast| %>
-<li>
-  <%= cast[:name] %> as <%= cast[:character] %>
-</li>
-<% end %>
-</ul>
+<div class="cast">
+  <h2>Cast</h2>
+  <ul>
+    <% @credit[:cast].each do |cast| %>
+    <li>
+      <%= cast[:name] %> as <%= cast[:character] %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="reviews">
   <h2>Reviews</h2>
   <h3>Review Count: <%= @reviews[:total_results] %></h3>
   <% @reviews[:results].each do |review| %>
   <b><p>Author: <%= review[:author] %></p></b>
   <p><%= review[:content] %></p>
   <% end %>
-<ul>
+</div>

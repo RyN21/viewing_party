@@ -9,6 +9,16 @@ class User < ApplicationRecord
       user.id = auth.uid
       user.google_token = auth.credentials.token
       user.google_refresh_token = auth.credentials.refresh_token
+
+       User.create(username: access_data.info.email, uid: access_data.uid)
     end
   end
 end
+
+
+# def self.parse_omniauth(access_data)
+#   user = find_by(uid: access_data.uid)
+#   return user unless user.nil?
+#
+#   User.create(username: access_data.info.email, uid: access_data.uid)
+# end
