@@ -2,7 +2,7 @@
 
 <p> Movie Title:</p>
 <%= form_for [:user, @party] do |f| %>
-  <%= f.label :duration %>:
+  <%= f.label :duration_in_minutes %>:
   <%= f.text_field :duration %><br />
 
   <%= f.date_select :when, :order => [:day, :month, :year] %>
