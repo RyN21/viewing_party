@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
+  has_many :parties, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
