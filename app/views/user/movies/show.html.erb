@@ -1,6 +1,6 @@
 <h1><%= @movie[:title] %></h1>
 
-<%= button_to 'Create Viewing Party', '/user/party/new' %>
+<%= button_to 'Create Viewing Party', '/user/party/new', method: :get %>
 
 <h2>Summary</h2>
 <p><%= @movie[:overview] %></p>

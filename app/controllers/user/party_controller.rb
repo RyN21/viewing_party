@@ -1,7 +1,5 @@
-class PartyController < ApplicationController
+class User::PartyController < ApplicationController
 
-  def create
-
-  end
+  def new; end
 
 end
