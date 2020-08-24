@@ -16,6 +16,5 @@ Rails.application.routes.draw do
     get '/discover', to: 'discover#index'
     get '/parties/new', to: 'parties#new'
     post '/parties', to: 'parties#create'
-    get '/parties', to: 'parties#index'
   end
 end
