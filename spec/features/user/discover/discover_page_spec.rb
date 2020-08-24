@@ -6,6 +6,7 @@ RSpec.describe "Discover Page" do
       visit root_path
       mock_auth_hash
       click_link "Login with Google"
+      require "pry"; binding.pry
       click_link "Discover Movies"
     end
 
