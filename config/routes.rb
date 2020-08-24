@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: redirect('/')
   namespace :user do
     get '/', to: 'dashboard#index'
+    post '/', to: 'friendships#create'
 
     get '/movies', to: 'movies#index'
     get 'movies/:id', to: 'movies#show'
