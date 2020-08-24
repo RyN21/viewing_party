@@ -1,0 +1,9 @@
+<h1> Create New Viewing Party </h1>
+
+<p> Movie Title:</p>
+<% binding.pry %>
+<%= form_tag "/user/party", method: :post do %>
+  <%= label_tag :create_party %><br>
+  <%= search_field_tag :create_party %><br>
+  <%= submit_tag 'Create Party' %>
+<% end %>
