@@ -1,4 +1,6 @@
 class User::MoviesController < ApplicationController
+  before_action :require_current_user
+  
   def index
     search_results = SearchResults.new
     search_query = params[:search_query]

@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe "Discover Page" do
   describe 'After authenticating' do
     before :each do
+      stub_omniauth
+      @user = create(:omniauth_mock_user)
+      expect(User.count).to eq(1)
       visit root_path
-      mock_auth_hash
       click_link "Login with Google"
-      require "pry"; binding.pry
       click_link "Discover Movies"
     end
 

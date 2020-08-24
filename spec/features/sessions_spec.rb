@@ -7,10 +7,9 @@ RSpec.describe 'Sessions spec' do
     expect(User.count).to eq(0)
     visit root_path
     click_link 'Login with Google'
-    require "pry"; binding.pry
     expect(User.count).to eq(1)
     user = User.first
-    expect(page).to have_content("Welcome, #{user.name}")
+    expect(page).to have_content("Welcome #{user.name}")
   end
 
   it 'logs a returning user in with google mock' do
@@ -20,7 +19,7 @@ RSpec.describe 'Sessions spec' do
     visit root_path
     click_link 'Login with Google'
     expect(User.count).to eq(1)
-    expect(current_path).to eq(dashboard_path)
-    expect(page).to have_content("Welcome, #{user.username}")
+    expect(current_path).to eq('/user')
+    expect(page).to have_content("Welcome #{user.name}")
   end
 end

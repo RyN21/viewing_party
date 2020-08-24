@@ -1,34 +1,29 @@
-# require 'rails_helper'
-#
-# RSpec.describe User, type: :model do
-#   describe 'validations' do
-#     it { should validate_presence_of :name }
-#     it { should validate_uniqueness_of :username }
-#     it { should validate_presence_of :uid }
-#     it { should validate_uniqueness_of :uid }
-#     it { should validate_uniqueness_of :google_token }
-#     it { have_many(:followers).through(:following) }
-#     it { have_many(:follower_users).through(:followers) }
-#     it { have_many :followings }
-#     it { have_many(:followed_users).through(:followings) }
-#   end
-#
-#   describe 'class methods' do
-#     describe 'User.parse_omniauth' do
-#       it 'finds a user in the database' do
-#         # binding.pry
-#         # user = create(:user, uid: '100000000000000000000', username: 'john@example.com')
-#         #
-#         # result = User.parse_omniauth()
-#         # expect(result.id).to eq(user.id)
-#       end
-#       it 'creates a new user in the database' do
-#         # user = create(:user, uid: '12345', username: 'something-new@gmail.com')
-#         #
-#         # result = User.parse_omniauth(@access_data)
-#         # expect(result.id).to eq(user.id)
-#         # expect(result.username).to eq(@access_data[:info][:email])
-#       end
-#     end
-#   end
-# end
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of :name }
+    it { should validate_uniqueness_of :username }
+    it { should validate_uniqueness_of :uid }
+    it { should validate_uniqueness_of :google_token }
+    it { have_many(:followers).through(:following) }
+    it { have_many(:follower_users).through(:followers) }
+    it { have_many :followings }
+    it { have_many(:followed_users).through(:followings) }
+  end
+
+  describe 'class methods' do
+    describe 'from_omniauth' do
+      it 'finds a user in the database' do
+        stub_omniauth
+        result = User.from_omniauth(stub_omniauth)
+
+        expect(result.id).to eq(stub_omniauth.id)
+        expect(result.id).to eq(stub_omniauth.id)
+        expect(result.name).to eq(stub_omniauth.name)
+        expect(result.username).to eq(stub_omniauth.info.email)
+        expect(result.uid).to eq(stub_omniauth.uid)
+      end
+    end
+  end
+end

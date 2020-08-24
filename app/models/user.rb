@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :name, presence: true
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
   validates :uid, presence: true, uniqueness: true
   validates :google_token, presence: true, uniqueness: true
 
@@ -26,11 +26,3 @@ class User < ApplicationRecord
     User.create(name: access_token.name, username: access_token.info.email, uid: access_token.uid)
   end
 end
-
-
-# def self.parse_omniauth(access_data)
-#   user = find_by(uid: access_data.uid)
-#   return user unless user.nil?
-#
-#   User.create(username: access_data.info.email, uid: access_data.uid)
-# end
