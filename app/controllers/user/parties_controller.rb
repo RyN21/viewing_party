@@ -7,7 +7,10 @@ class User::PartiesController < ApplicationController
   def create
     user = current_user
     @party = user.parties.create(party_params)
-    require "pry"; binding.pry
+    # day = @party.when[4..5]
+    # month = @party.when[11]
+    # year = @party.when[17..20]
+    # @party.when = "#{day}/#{month}/#{year}"
     redirect_to '/user'
   end
 
