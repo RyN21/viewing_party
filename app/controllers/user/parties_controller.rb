@@ -4,6 +4,10 @@ class User::PartiesController < ApplicationController
     @party = Party.new
   end
 
+  def show
+    @party = Party.find(params[:party_id])
+  end
+
   def create
     user = current_user
     @party = user.parties.create(party_params)
