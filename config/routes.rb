@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     get '/discover', to: 'discover#index'
     get '/parties/new', to: 'parties#new'
     post '/parties', to: 'parties#create'
+    delete '/parties/:party_id', to: 'parties#destroy'
   end
 end

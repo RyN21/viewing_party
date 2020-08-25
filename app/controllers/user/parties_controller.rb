@@ -14,6 +14,12 @@ class User::PartiesController < ApplicationController
     redirect_to '/user'
   end
 
+  def destroy
+    party_to_delete = Party.find(params[:party_id])
+      party_to_delete.destroy
+      redirect_to "/user/"
+  end
+
   private
 
   def party_params
