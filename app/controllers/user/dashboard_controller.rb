@@ -1,6 +1,5 @@
 class User::DashboardController < ApplicationController
   def index
-    @user = current_user
-    @parties = current_user.parties
+    @user = current_user    
   end
 end
