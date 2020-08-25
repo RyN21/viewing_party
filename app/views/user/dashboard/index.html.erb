@@ -3,7 +3,15 @@
 <%= link_to "Discover Movies", "/user/discover" %>
 
 <h3>Friends</h3>
-# @friends.each do
+
+<%= form_tag(user_path, method: "post") do %>
+  Add Friend's Email: <%= email_field(:user, :email) %>
+  <%= submit_tag("Add Friends")%>
+<%end%>
 
 <h3>Viewing Parties</h3>
-# @viewing_parties.each do
+<% @user.parties.each do |party| %>
+<%= link_to "Party on '#{party.when}'", "/user/parties/#{party.id}" %>
+<%= button_to "Delete Party", "/user/parties/#{party.id}/", method: :delete %>
+</br>
+<% end %>
