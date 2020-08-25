@@ -10,7 +10,7 @@ class User < ApplicationRecord
     where(email: auth.info.email).first_or_initialize do |user|
       user.name = auth.info.name
       user.email = auth.info.email
-      user.id = auth.uid
+      user.id = auth.uid[1..2]
       user.google_token = auth.credentials.token
       user.google_refresh_token = auth.credentials.refresh_token
     end

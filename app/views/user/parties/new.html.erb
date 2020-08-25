@@ -1,7 +1,9 @@
 <h1> Create New Viewing Party </h1>
 
-<p> Movie Title: <%= params[:movie_title] %></p>
+<b><p> Movie Title: <%= @movie_title %></p></b>
 <%= form_for [:user, @party] do |f| %>
+  <%= f.hidden_field :movie_title, :value => @movie_title %> <br/>
+
   <%= f.label :duration_in_minutes %>:
   <%= f.text_field :duration %><br />
 
