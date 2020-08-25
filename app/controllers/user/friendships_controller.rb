@@ -3,7 +3,7 @@ class User::FriendshipsController < ApplicationController
 
   def create
     friend_email = params[:user][:email]
-    user = User.find_by(username: friend_email)
+    user = User.find_by(email: friend_email)
     require "pry"; binding.pry
     @new_friendships = Friendship.create_reciprocal_for_ids(current_user.id, params[:friend_id])
     redirect_to user_path

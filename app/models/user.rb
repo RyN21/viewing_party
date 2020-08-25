@@ -23,6 +23,9 @@ class User < ApplicationRecord
     user = find_by(uid: access_token.uid)
     return user unless user.nil?
 
-    User.create(name: access_token.name, username: access_token.info.email, uid: access_token.uid)
+    User.create(name: access_token.name,
+                email: access_token.info.email,
+                username: access_token.info.email,
+                uid: access_token.uid)
   end
 end
