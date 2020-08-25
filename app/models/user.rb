@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
-
+  #
   # def self.from_omniauth(auth)
   #   where(email: auth.info.email).first_or_initialize do |user|
   #     user.name = auth.info.name
@@ -15,14 +15,14 @@ class User < ApplicationRecord
   #     user.google_token = auth.credentials.token
   #     user.google_refresh_token = auth.credentials.refresh_token
   #
-  #     User.create(username: access_token.info.email, uid: access_token.uid)
+  #     User.create(username: auth.info.email, uid: auth.uid)
   #   end
   # end
-
+  #
   def self.from_omniauth(access_token)
     user = find_by(uid: access_token.uid)
     return user unless user.nil?
 
-    User.create(name: access_token.name, username: access_token.info.email, uid: access_token.uid)
+    User.create(name: access_token.name, email: access_token.info.email, username: access_token.info.email, uid: access_token.uid)
   end
 end

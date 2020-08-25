@@ -6,7 +6,7 @@
 <div class="friends">
   <h3>Friends</h3>
   <%= form_tag(user_path, method: "post") do %>
-  Add Friend's Email: <%= email_field(:username) %>
+  Add Friend's Email: <%= email_field(:user, :email) %>
   <%= submit_tag("Add Friends")%>
   <%end%>
 </div>
