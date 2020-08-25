@@ -3,7 +3,6 @@ class User::PartiesController < ApplicationController
   def new
     @movie_show = Movie.new(@movie)
     @party = Party.new
-    require "pry"; binding.pry
   end
 
   def show
