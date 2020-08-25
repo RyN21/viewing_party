@@ -1,7 +1,7 @@
 
 <h1><%= @movie.title %></h1>
 
-<%= link_to 'Create Viewing Party', '/user/parties/new', method: :get %>
+<%= link_to "Create Viewing Party", "/user/parties/#{@movie.title}/new", method: :get %>
 
 <h2>Summary</h2>
 <p><%= @movie.overview %></p>

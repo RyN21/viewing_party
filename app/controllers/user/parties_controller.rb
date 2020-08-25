@@ -1,7 +1,6 @@
 class User::PartiesController < ApplicationController
 
   def new
-    @movie_show = Movie.new(@movie)
     @party = Party.new
   end
 
