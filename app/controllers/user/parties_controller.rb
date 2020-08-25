@@ -12,6 +12,7 @@ class User::PartiesController < ApplicationController
 
   def create
     user = current_user
+    #datetime object, add time to form
     @party = user.parties.create(party_params)
     # day = @party.when[4..5]
     # month = @party.when[11]
