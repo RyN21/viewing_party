@@ -14,12 +14,14 @@ class User::MoviesController < ApplicationController
     movie = JSON.parse(movie_response.body, symbolize_names: true)
       Movie.new(movie)
 
-    require "pry"; binding.pry
-
     credit_response = conn.get("movie/#{movie_id}/credits") do |f|
       f.params['movie_id'] = movie_id
     end
-    json = JSON.parse(credit_response.body, symbolize_names: true)
+    credits = JSON.parse(credit_response.body, symbolize_names: true)
+      credit = credits[:cast].map do |member|
+        member[:name]
+      end
+      Credit.new(credit)
 
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
@@ -33,5 +35,10 @@ class User::MoviesController < ApplicationController
     Faraday.new('https://api.themoviedb.org/3/') do |f|
       f.params['api_key'] = ENV['MOVIE_KEY']
     end
+  end
+
+  def get_cast_member
+
+
   end
 end
