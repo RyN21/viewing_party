@@ -11,16 +11,19 @@ class User::MoviesController < ApplicationController
     movie_response = conn.get("movie/#{movie_id}") do |f|
       f.params['movie_id'] = movie_id
     end
-    @movie = JSON.parse(movie_response.body, symbolize_names: true)
+    movie = JSON.parse(movie_response.body, symbolize_names: true)
+      Movie.new(movie)
+
+    require "pry"; binding.pry
 
     credit_response = conn.get("movie/#{movie_id}/credits") do |f|
       f.params['movie_id'] = movie_id
     end
-    @credit = JSON.parse(credit_response.body, symbolize_names: true)
+    json = JSON.parse(credit_response.body, symbolize_names: true)
 
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
-    end    
+    end
     @review = JSON.parse(review_response.body, symbolize_names: true)
   end
 
