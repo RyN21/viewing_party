@@ -31,11 +31,11 @@ class User::MoviesController < ApplicationController
     end
     review_json = JSON.parse(review_response.body, symbolize_names: true)
     @reviews = review_json
-    review_json[:results].each do |review|
+    @reviews[:results].each do |review|
       review_author = review[:author]
       review_content = review[:content]
       total_results = @reviews[:total_results]
-      if @reviews[:total_results] >= 1
+      if review_json[:total_results] >= 1
         @review = Review.new(review_author, review_content, total_results)
       end
     end

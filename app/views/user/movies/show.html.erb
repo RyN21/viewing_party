@@ -40,9 +40,11 @@
   <h2>Reviews</h2>
   <% if @review.total_results != nil %>
   <h3>Review Count: <%= @review.total_results %></h3>
-  <b><p>Author: <%= @review.author %></p></b>
-  <p><%= @review.content %></p>
+  <% @reviews[:results].each do |review| %>
+    <b><p>Author: <%= review[:author] %></p></b>
+    <p><%= review[:content] %></p>
+  <% end %>
   <% else %>
-  <p><There are no reviews</p>
+    <p><There are no reviews</p>
   <% end %>
 <ul>
