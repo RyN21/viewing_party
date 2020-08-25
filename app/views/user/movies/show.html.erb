@@ -42,5 +42,7 @@
   <h3>Review Count: <%= @review.total_results %></h3>
   <b><p>Author: <%= @review.author %></p></b>
   <p><%= @review.content %></p>
+  <% else %>
+  <p><There are no reviews</p>
   <% end %>
 <ul>

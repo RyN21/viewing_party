@@ -30,8 +30,14 @@ class User::MoviesController < ApplicationController
       f.params['movie_id'] = movie_id
     end
     review_json = JSON.parse(review_response.body, symbolize_names: true)
-      if review_json[:total_results] >= 1
-      @review = Review.new(review_json)
+    @reviews = review_json
+    review_json[:results].each do |review|
+      review_author = review[:author]
+      review_content = review[:content]
+      total_results = @reviews[:total_results]
+      if @reviews[:total_results] >= 1
+        @review = Review.new(review_author, review_content, total_results)
+      end
     end
   end
 
