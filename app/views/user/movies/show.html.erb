@@ -1,41 +1,42 @@
-<h1><%= @movie[:title] %></h1>
+
+<h1><%= @movie.title %></h1>
 
 <%= link_to 'Create Viewing Party', '/user/parties/new', method: :get %>
 
 <h2>Summary</h2>
-<p><%= @movie[:overview] %></p>
+<p><%= @movie.overview %></p>
 
 <h2>Genres</h2>
 
 <ul>
-<% @movie[:genres].each do |genre| %>
+  <% if @movie.genres != nil %>
+<% @movie.genres.each do |genre| %>
 <li>
-  <%= genre[:name] %>
+  <%= genre.name %>
 </li>
+<% else %>
+<p>There are no genres listed for this movie </p>
+  <% end %>
 <% end %>
 </ul>
 
 <h2>Average Rating</h2>
-<p><%= @movie[:vote_average] %>/10</p>
+<p><%= @movie.vote_average %>/10</p>
 
 <h2>Runtime</h2>
-<p><%= (@movie[:runtime] / 60) %> hr <%= (@movie[:runtime] % 60) %> min</p>
+<p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
 
 <h2>Total Votes</h2>
-<p><%= @movie[:vote_count] %></p>
+<p><%= @movie.vote_count %></p>
 
 <h2>Cast</h2>
 <ul>
-<% @credit[:cast].each do |cast| %>
 <li>
-  <%= cast[:name] %> as <%= cast[:character] %>
+  <%= @credits.name %> as <%= @credits.character %>
 </li>
-<% end %>
 </ul>
   <h2>Reviews</h2>
-  <h3>Review Count: <%= @review[:total_results] %></h3>
-  <% @review[:results].each do |review| %>
-  <b><p>Author: <%= review[:author] %></p></b>
-  <p><%= review[:content] %></p>
-  <% end %>
+  <h3>Review Count: <%= @review.total_results %></h3>
+  <b><p>Author: <%= @review.author %></p></b>
+  <p><%= @review.content %></p>
 <ul>
