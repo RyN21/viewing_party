@@ -7,13 +7,30 @@ class User::MoviesController < ApplicationController
   end
 
   def show
+    get_movies
+    get_credit
+    get_reviews
+  end
+
+  private
+
+  def conn
+    Faraday.new('https://api.themoviedb.org/3/') do |f|
+      f.params['api_key'] = ENV['MOVIE_KEY']
+    end
+  end
+
+  def get_movies
     movie_id = params[:id].to_i
     movie_response = conn.get("movie/#{movie_id}") do |f|
       f.params['movie_id'] = movie_id
     end
     movie_json = JSON.parse(movie_response.body, symbolize_names: true)
     @movie = Movie.new(movie_json)
+  end
 
+  def get_credit
+    movie_id = params[:id].to_i
     credit_response = conn.get("movie/#{movie_id}/credits") do |f|
       f.params['movie_id'] = movie_id
     end
@@ -25,7 +42,10 @@ class User::MoviesController < ApplicationController
         Credit.new(member_name, member_character)
       end
     end
+  end
 
+  def get_reviews
+    movie_id = params[:id].to_i
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
     end
@@ -38,14 +58,6 @@ class User::MoviesController < ApplicationController
       if review_json[:total_results] >= 1
         @review = Review.new(review_author, review_content, total_results)
       end
-    end
-  end
-
-  private
-
-  def conn
-    Faraday.new('https://api.themoviedb.org/3/') do |f|
-      f.params['api_key'] = ENV['MOVIE_KEY']
     end
   end
 end
