@@ -18,17 +18,21 @@ class User::MoviesController < ApplicationController
       f.params['movie_id'] = movie_id
     end
     credit_json = JSON.parse(credit_response.body, symbolize_names: true)
-      mapped_credits = credit_json[:cast].map do |member|
-        member[:name]
+    credit_json[:cast].each do |member|
+      @credits = credit_json[:cast].map do |credit|
+        member_name = credit[:name]
+        member_character = credit[:character]
+        Credit.new(member_name, member_character)
       end
-      @credits = Credit.new(mapped_credits)
+    end
 
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
     end
     review_json = JSON.parse(review_response.body, symbolize_names: true)
-      require "pry"; binding.pry
+      if review_json[:total_results] >= 1
       @review = Review.new(review_json)
+    end
   end
 
   private

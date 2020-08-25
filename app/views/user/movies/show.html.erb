@@ -32,11 +32,16 @@
 <h2>Cast</h2>
 <ul>
 <li>
-  <%= @credits.name %> as <%= @credits.character %>
+  <% @credits.each do |credit| %>
+  <p><%= credit.name %> as <%= credit.character %></p>
+  <% end %>
 </li>
 </ul>
   <h2>Reviews</h2>
+  <% binding.pry %>
+  <% if @review.total_results != nil %>
   <h3>Review Count: <%= @review.total_results %></h3>
   <b><p>Author: <%= @review.author %></p></b>
   <p><%= @review.content %></p>
+  <% end %>
 <ul>

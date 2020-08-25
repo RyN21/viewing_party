@@ -1,7 +1,8 @@
 class Credit
-  attr_reader :name
+  attr_reader :name, :character
 
-  def initialize(cast)
-    @cast = cast
+  def initialize(name, character)
+    @name = name
+    @character = character
   end
 end
