@@ -26,7 +26,8 @@ class User::MoviesController < ApplicationController
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
     end
-    @review = JSON.parse(review_response.body, symbolize_names: true)
+    review = JSON.parse(review_response.body, symbolize_names: true)
+      Review.new(review)
   end
 
   private
@@ -35,10 +36,5 @@ class User::MoviesController < ApplicationController
     Faraday.new('https://api.themoviedb.org/3/') do |f|
       f.params['api_key'] = ENV['MOVIE_KEY']
     end
-  end
-
-  def get_cast_member
-
-
   end
 end
