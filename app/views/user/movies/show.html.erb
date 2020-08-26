@@ -18,8 +18,10 @@
     <% end %>
 </div>
 
-<h2>Average Rating</h2>
-<p><%= @movie.vote_average %>/10</p>
+<div class="average-rating">
+  <h2>Average Rating</h2>
+  <p><%= @movie.vote_average %>/10</p>
+</div>
 
 <h2>Runtime</h2>
 <p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
