@@ -1,4 +1,5 @@
 class User::PartiesController < ApplicationController
+  before_action :require_current_user
 
   def new
     @movie_title = params[:movie_title]
@@ -11,7 +12,6 @@ class User::PartiesController < ApplicationController
 
   def create
     user = current_user
-
     #datetime object, add time to form
     @party = user.parties.create(party_params)
     # day = @party.when[4..5]
@@ -23,8 +23,8 @@ class User::PartiesController < ApplicationController
 
   def destroy
     party_to_delete = Party.find(params[:party_id])
-      party_to_delete.destroy
-      redirect_to "/user/"
+    party_to_delete.destroy
+    redirect_to '/user/'
   end
 
   private
