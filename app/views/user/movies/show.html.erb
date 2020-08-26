@@ -1,4 +1,3 @@
-
 <h1><%= @movie.title %></h1>
 
 <%= link_to "Create Viewing Party", "/user/parties/#{@movie.title}/new", method: :get %>
@@ -6,7 +5,8 @@
 <h2>Summary</h2>
 <p><%= @movie.overview %></p>
 
-<h2>Genres</h2>
+<div class="genres">
+  <h2>Genres</h2>
 
 <ul>
   <% if @movie.genres != nil %>
@@ -46,5 +46,6 @@
   <% end %>
   <% else %>
     <p><There are no reviews</p>
+
   <% end %>
-<ul>
+</div>

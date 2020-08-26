@@ -1,5 +1,7 @@
 class User::DashboardController < ApplicationController
-  def index    
+  before_action :require_current_user
+  def index
     @user = current_user
+    @friends = @user.friends
   end
 end

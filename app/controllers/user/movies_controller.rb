@@ -1,4 +1,6 @@
 class User::MoviesController < ApplicationController
+  before_action :require_current_user
+  
   def index
     search_results = SearchResults.new
     search_query = params[:search_query]
@@ -49,6 +51,7 @@ class User::MoviesController < ApplicationController
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id
     end
+
     review_json = JSON.parse(review_response.body, symbolize_names: true)
     @reviews = review_json
     @reviews[:results].each do |review|
