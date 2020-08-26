@@ -6,7 +6,6 @@ RSpec.describe "Navigation" do
       visit root_path
       stub_omniauth
       User.create()
-      require "pry"; binding.pry
       click_link "Login with Google"
     end
 
