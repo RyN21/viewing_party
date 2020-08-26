@@ -9,7 +9,7 @@ class Movie
 
   def initialize(attributes)
     @id = attributes[:id]
-    @genres = attributes[:genre_ids]
+    @genres = attributes[:genres]
     # need genre ids to proper genres
     @title = attributes[:title]
     @overview = attributes[:overview]

@@ -4,7 +4,7 @@ RSpec.describe "Discover Page" do
   describe 'After authenticating' do
     before :each do
       visit root_path
-      mock_auth_hash
+      stub_omniauth
       click_link "Login with Google"
       click_link "Discover Movies"
       fill_in :search_query, with: "Gladiator"
@@ -32,7 +32,7 @@ RSpec.describe "Discover Page" do
       end
 
       within ".total-votes" do
-        expect(page).to have_content("12296")
+        expect(page).to have_content("12309")
       end
 
       within ".cast" do

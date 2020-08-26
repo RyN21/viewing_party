@@ -10,6 +10,7 @@ class User < ApplicationRecord
   def self.from_omniauth(access_token)
     user = find_by(uid: access_token.uid)
     return user unless user.nil?
+
     User.create(email: access_token.info.email,
                 username: access_token.info.email,
                 uid: access_token.uid)

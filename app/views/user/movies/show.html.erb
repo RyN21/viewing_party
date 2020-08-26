@@ -2,50 +2,57 @@
 
 <%= link_to "Create Viewing Party", "/user/parties/#{@movie.title}/new", method: :get %>
 
-<h2>Summary</h2>
-<p><%= @movie.overview %></p>
+<div class="summary"
+  <h2>Summary</h2>
+  <p><%= @movie.overview %></p>
+</div>
 
 <div class="genres">
   <h2>Genres</h2>
+    <% if @movie.genres != nil %>
+      <% @movie.genres.each do |genre| %>
+        <%= genre[:name] %><br>
+      <% end %>
+    <% else %>
+      <p>There are no genres listed for this movie </p>
+    <% end %>
+</div>
 
-<ul>
-  <% if @movie.genres != nil %>
-<% @movie.genres.each do |genre| %>
-<li>
-  <%= genre.name %>
-</li>
-<% else %>
-<p>There are no genres listed for this movie </p>
-  <% end %>
-<% end %>
-</ul>
+<div class="average-rating">
+  <h2>Average Rating</h2>
+  <p><%= @movie.vote_average %>/10</p>
+</div>
 
-<h2>Average Rating</h2>
-<p><%= @movie.vote_average %>/10</p>
+<div class="runtime">
+  <h2>Runtime</h2>
+  <p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
+</div>
 
-<h2>Runtime</h2>
-<p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
+<div class="total-votes">
+  <h2>Total Votes</h2>
+  <p><%= @movie.vote_count %></p>
+</div>
 
-<h2>Total Votes</h2>
-<p><%= @movie.vote_count %></p>
+<div class="cast">
+  <h2>Cast</h2>
+  <ul>
+    <li>
+      <% @credits.take(10).each do |credit| %>
+        <p><%= credit.name %> as <%= credit.character %></p>
+      <% end %>
+    </li>
+  </ul>
+</div>
 
-<h2>Cast</h2>
-<ul>
-<li>
-  <% @credits.take(10).each do |credit| %>
-  <p><%= credit.name %> as <%= credit.character %></p>
-  <% end %>
-</li>
-</ul>
+<div class="reviews">
   <h2>Reviews</h2>
   <% if @review.respond_to?(:total_results) %>
-  <h3>Review Count: <%= @review.total_results %></h3>
-  <% @reviews[:results].each do |review| %>
-    <b><p>Author: <%= review[:author] %></p></b>
-    <p><%= review[:content] %></p>
-  <% end %>
+      <h3>Review Count: <%= @review.total_results %></h3>
+      <% @reviews[:results].each do |review| %>
+        <b><p>Author: <%= review[:author] %></p></b>
+        <p><%= review[:content] %></p>
+      <% end %>
   <% else %>
     <p><There are no reviews</p>
-
   <% end %>
 </div>

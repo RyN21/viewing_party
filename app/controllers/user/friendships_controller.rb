@@ -1,31 +1,23 @@
 class User::FriendshipsController < ApplicationController
+  before_action :require_current_user
   protect_from_forgery with: :exception
 
-  # def create
-  #   friend_email = params[:username]
-  #   Friendship.create(user_id: current_user.id, friend_id: User.find_by(username: friend_email).id)
-  #   require "pry"; binding.pry
-  #   redirect_to user_path
-  # end
-
   def create
-    if params[:username]
+    if User.where(username: params[:username]).present?
       user = current_user
       friend = User.find_by(username: params[:username])
       Friendship.create(user: user, friend: friend)
       Friendship.create(user: friend, friend: user)
+      flash[:notice] = 'Successfully added friend'
+      redirect_to user_path
     else
-      redirect_to users_path
       flash[:error] = 'Could not find user with that email'
+      redirect_to user_path
     end
-    redirect_to '/user'
   end
 
   def destroy
     Friendship.destroy_reciprocal_for_ids(current_user_id, params[:friend_id])
     redirect_to(request.referer)
   end
-
-  private
-
 end
