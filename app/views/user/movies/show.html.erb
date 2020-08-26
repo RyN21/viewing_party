@@ -23,8 +23,10 @@
   <p><%= @movie.vote_average %>/10</p>
 </div>
 
-<h2>Runtime</h2>
-<p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
+<div class="runtime">
+  <h2>Runtime</h2>
+  <p><%= (@movie.runtime / 60) %> hr <%= (@movie.runtime % 60) %> min</p>
+</div>
 
 <h2>Total Votes</h2>
 <p><%= @movie.vote_count %></p>
