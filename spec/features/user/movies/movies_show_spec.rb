@@ -32,7 +32,7 @@ RSpec.describe "Discover Page" do
       end
 
       within ".total-votes" do
-        expect(page).to have_content("12296")
+        expect(page).to have_content("12309")
       end
 
       within ".cast" do
