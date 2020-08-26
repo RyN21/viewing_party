@@ -1,6 +1,5 @@
 class User::MoviesController < ApplicationController
   before_action :require_current_user
-  
   def index
     search_results = SearchResults.new
     search_query = params[:search_query]
@@ -9,9 +8,9 @@ class User::MoviesController < ApplicationController
   end
 
   def show
-    get_movies
-    get_credit
-    get_reviews
+    movie_getter
+    credit_getter
+    review_getter
   end
 
   private
@@ -22,7 +21,7 @@ class User::MoviesController < ApplicationController
     end
   end
 
-  def get_movies
+  def movie_getter
     movie_id = params[:id].to_i
     movie_response = conn.get("movie/#{movie_id}") do |f|
       f.params['movie_id'] = movie_id
@@ -31,22 +30,20 @@ class User::MoviesController < ApplicationController
     @movie = Movie.new(movie_json)
   end
 
-  def get_credit
+  def credit_getter
     movie_id = params[:id].to_i
     credit_response = conn.get("movie/#{movie_id}/credits") do |f|
       f.params['movie_id'] = movie_id
     end
     credit_json = JSON.parse(credit_response.body, symbolize_names: true)
-    credit_json[:cast].each do |member|
-      @credits = credit_json[:cast].map do |credit|
-        member_name = credit[:name]
-        member_character = credit[:character]
-        Credit.new(member_name, member_character)
-      end
+    @credits = credit_json[:cast].map do |credit|
+      member_name = credit[:name]
+      member_character = credit[:character]
+      Credit.new(member_name, member_character)
     end
   end
 
-  def get_reviews
+  def review_getter
     movie_id = params[:id].to_i
     review_response = conn.get("movie/#{movie_id}/reviews") do |f|
       f.params['movie_id'] = movie_id

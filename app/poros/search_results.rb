@@ -9,14 +9,13 @@ class SearchResults
   end
 
   def movie_search(search_query)
-    if search_query != nil
-      response = conn.get('search/movie') do |f|
-        f.params['query'] = search_query
-      end
-      json = JSON.parse(response.body, symbolize_names: true)
-      @movie_results = json[:results].map do |movie_result|
-        Movie.new(movie_result)
-      end
+    return unless !search_query.nil?
+    response = conn.get('search/movie') do |f|
+      f.params['query'] = search_query
+    end
+    json = JSON.parse(response.body, symbolize_names: true)
+    @movie_results = json[:results].map do |movie_result|
+      Movie.new(movie_result)
     end
   end
 

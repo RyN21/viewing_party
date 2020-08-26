@@ -16,7 +16,7 @@ class User < ApplicationRecord
                 uid: access_token.uid)
   end
 
-  def get_friends
+  def friend_getter
     ActiveRecord::Base.connection.execute("SELECT \"users\".* FROM \"users\" INNER JOIN \"friendships\" ON \"users\".\"id\" = \"friendships\".\"friend_id\" WHERE \"friendships\".\"user_id\" = #{id}").map do |friend_hash|
       User.new(friend_hash)
     end

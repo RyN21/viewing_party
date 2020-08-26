@@ -12,7 +12,7 @@
 
 <div>
   <un>
-    <% @user.get_friends.each do |friend| %>
+    <% @user.friend_getter.each do |friend| %>
       <%= friend.username %>
     <% end %>
   </un>

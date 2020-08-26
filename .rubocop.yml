@@ -36,3 +36,15 @@ Rails/UniqueValidationWithoutIndex:
 
 Metrics/MethodLength:
   Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Style/NegatedUnless:
+  Enabled: false  
