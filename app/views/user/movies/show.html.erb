@@ -9,18 +9,14 @@
 
 <div class="genres">
   <h2>Genres</h2>
-
-<ul>
-  <% if @movie.genres != nil %>
-<% @movie.genres.each do |genre| %>
-<li>
-  <%= genre.name %>
-</li>
-<% else %>
-<p>There are no genres listed for this movie </p>
-  <% end %>
-<% end %>
-</ul>
+    <% if @movie.genres != nil %>
+      <% @movie.genres.each do |genre| %>
+        <%= genre[:name] %><br>
+      <% end %>
+    <% else %>
+      <p>There are no genres listed for this movie </p>
+    <% end %>
+</div>
 
 <h2>Average Rating</h2>
 <p><%= @movie.vote_average %>/10</p>
@@ -50,4 +46,3 @@
     <p><There are no reviews</p>
 
   <% end %>
-</div>
