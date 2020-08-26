@@ -31,6 +31,6 @@ class User::PartiesController < ApplicationController
 
   def party_params
     movie_title = params[:party][:movie_title]
-    params.require(:party).permit(:duration, 'when(3i)', 'when(2i)', 'when(1i)', :movie_title, :attendees)
+    params.require(:party).permit(:duration, :when, :movie_title, :attendees)
   end
 end
