@@ -11,9 +11,9 @@ RSpec.describe "Welcome page" do
   it "I can sign in with Google account" do
     visit root_path
     expect(page).to have_content("Login with Google")
-    mock_auth_hash
+    stub_omniauth
     click_link "Login with Google"
     expect(current_path).to eq(user_path)
-    expect(page).to have_content("person@example.com")
+    expect(page).to have_content("Welcome John Smith!")
   end
 end
