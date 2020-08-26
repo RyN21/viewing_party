@@ -18,7 +18,4 @@ class User::FriendshipsController < ApplicationController
     Friendship.destroy_reciprocal_for_ids(current_user_id, params[:friend_id])
     redirect_to(request.referer)
   end
-
-  private
-
 end
