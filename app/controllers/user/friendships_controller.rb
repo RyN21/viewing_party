@@ -1,13 +1,6 @@
 class User::FriendshipsController < ApplicationController
   protect_from_forgery with: :exception
 
-  # def create
-  #   friend_email = params[:username]
-  #   Friendship.create(user_id: current_user.id, friend_id: User.find_by(username: friend_email).id)
-  #   require "pry"; binding.pry
-  #   redirect_to user_path
-  # end
-
   def create
     if params[:username]
       user = current_user
