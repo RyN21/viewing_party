@@ -5,8 +5,7 @@ RSpec.describe "Navigation" do
     before :each do
       visit root_path
       stub_omniauth
-      User.create()
-      require "pry"; binding.pry
+      User.create()      
       click_link "Login with Google"
     end
 
