@@ -3,16 +3,15 @@ class User::FriendshipsController < ApplicationController
   protect_from_forgery with: :exception
 
   def create
-    if params[:username]
+    if User.where(username: params[:username]).present?
       user = current_user
       friend = User.find_by(username: params[:username])
       Friendship.create(user: user, friend: friend)
       Friendship.create(user: friend, friend: user)
     else
-      redirect_to users_path
       flash[:error] = 'Could not find user with that email'
+      redirect_to user_path
     end
-    redirect_to '/user'
   end
 
   def destroy
