@@ -17,7 +17,7 @@ RSpec.describe "Viewing parties" do
       duration = "155"
       date = "2020-08-27"
       time = "17:59"
-      
+
       click_link "Create Viewing Party"
 
       fill_in :party_duration, with: duration
@@ -28,9 +28,9 @@ RSpec.describe "Viewing parties" do
       click_link "Party on '2020-08-27'"
 
       expect(page).to have_content("Movie: Gladiator")
+      expect(page).to have_content(date)
       expect(page).to have_content(time)
-      expect(page).to have_content(time)
-      expect(page).to have_content(duration)
+      expect(page).to have_content("2 hr 35 min")
     end
   end
 end
