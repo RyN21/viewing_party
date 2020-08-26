@@ -15,8 +15,8 @@ class User::PartiesController < ApplicationController
     party = user.parties.new(party_params)
     if party.save
       flash[:success] = "New viewing party created"
-      redirect_to '/user'
-    end 
+      redirect_to user_path
+    end
   end
 
   def destroy

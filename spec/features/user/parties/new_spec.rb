@@ -22,6 +22,7 @@ RSpec.describe "Viewing parties" do
       click_button "Create Party"
 
       expect(page).to have_content("New viewing party created")
+      expect(current_path).to eq(user_path)
     end
   end
 end
