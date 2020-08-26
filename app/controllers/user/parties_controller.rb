@@ -12,12 +12,8 @@ class User::PartiesController < ApplicationController
 
   def create
     user = current_user
-    #datetime object, add time to form
+    require "pry"; binding.pry
     @party = user.parties.create(party_params)
-    # day = @party.when[4..5]
-    # month = @party.when[11]
-    # year = @party.when[17..20]
-    # @party.when = "#{day}/#{month}/#{year}"
     redirect_to '/user'
   end
 
@@ -31,6 +27,6 @@ class User::PartiesController < ApplicationController
 
   def party_params
     movie_title = params[:party][:movie_title]
-    params.require(:party).permit(:duration, :when, :movie_title, :attendees)
+    params.require(:party).permit(:duration, :when, :time, :movie_title, :attendees)
   end
 end
