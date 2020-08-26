@@ -2,5 +2,5 @@
 <p>Movie: <%= @party.movie_title %></p>
 
 <p>Time: <%=@party.time %></p>
-<p>Duration: <%= @party.duration %></p>
+<p>Duration: <%= (@party.duration.to_i / 60) %> hr <%= (@party.duration.to_i % 60) %> min</p>
 <p>Attendees: <%= @party.attendees %></p>
