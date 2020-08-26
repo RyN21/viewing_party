@@ -28,7 +28,7 @@ RSpec.describe "User Dashboard" do
     end
 
     it 'I should see a viewing parties section' do
-      within '.viewing_parties' do
+      within '.viewing-parties' do
         expect(page).to have_content("Viewing Parties")
       end
     end
