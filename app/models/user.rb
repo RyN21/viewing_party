@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  validates :name, presence: true
   validates :username, presence: true, uniqueness: true
   validates :uid, presence: true, uniqueness: true
   validates :google_token, presence: true, uniqueness: true
@@ -7,25 +6,17 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
-  # def self.from_omniauth(auth)
-  #   where(email: auth.info.email).first_or_initialize do |user|
-  #     user.name = auth.info.name
-  #     user.email = auth.info.email
-  #     user.uid = auth.uid
-  #     user.google_token = auth.credentials.token
-  #     user.google_refresh_token = auth.credentials.refresh_token
-  #
-  #     User.create(username: access_token.info.email, uid: access_token.uid)
-  #   end
-  # end
-
   def self.from_omniauth(access_token)
     user = find_by(uid: access_token.uid)
     return user unless user.nil?
-
-    User.create(name: access_token.name,
-                email: access_token.info.email,
+    User.create(email: access_token.info.email,
                 username: access_token.info.email,
                 uid: access_token.uid)
+  end
+
+  def get_friends
+    ActiveRecord::Base.connection.execute("SELECT \"users\".* FROM \"users\" INNER JOIN \"friendships\" ON \"users\".\"id\" = \"friendships\".\"friend_id\" WHERE \"friendships\".\"user_id\" = #{id}").map do |friend_hash|
+      User.new(friend_hash)
+    end
   end
 end

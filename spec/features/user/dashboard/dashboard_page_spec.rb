@@ -5,7 +5,6 @@ RSpec.describe "User Dashboard" do
     before :each do
       stub_omniauth
       @john = create(:omniauth_mock_user)
-      expect(User.count).to eq(1)
       visit root_path
       click_link "Login with Google"
     end
