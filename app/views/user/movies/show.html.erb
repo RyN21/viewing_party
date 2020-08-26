@@ -33,14 +33,17 @@
   <p><%= @movie.vote_count %></p>
 </div>
 
-<h2>Cast</h2>
-<ul>
-<li>
-  <% @credits.take(10).each do |credit| %>
-  <p><%= credit.name %> as <%= credit.character %></p>
-  <% end %>
-</li>
-</ul>
+<div class="cast">
+  <h2>Cast</h2>
+  <ul>
+    <li>
+      <% @credits.take(10).each do |credit| %>
+        <p><%= credit.name %> as <%= credit.character %></p>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
   <h2>Reviews</h2>
   <% if @review.respond_to?(:total_results) %>
   <h3>Review Count: <%= @review.total_results %></h3>
