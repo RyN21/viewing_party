@@ -12,8 +12,11 @@ class User::PartiesController < ApplicationController
 
   def create
     user = current_user
-    user.parties.create(party_params)
-    redirect_to '/user'
+    party = user.parties.new(party_params)
+    if party.save
+      flash[:success] = "New viewing party created"
+      redirect_to user_path
+    end
   end
 
   def destroy
