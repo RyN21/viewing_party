@@ -24,6 +24,8 @@ RSpec.describe "Friends" do
       click_button "Add Friend"
     end
 
+    expect(page).to have_content("Successfully added friend")
+
     within '.friends' do
       fill_in :username, with: "#{@user2.username}"
       click_button "Add Friend"
