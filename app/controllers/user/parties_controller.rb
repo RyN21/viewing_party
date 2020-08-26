@@ -12,8 +12,7 @@ class User::PartiesController < ApplicationController
 
   def create
     user = current_user
-    require "pry"; binding.pry
-    @party = user.parties.create(party_params)
+    user.parties.create(party_params)
     redirect_to '/user'
   end
 
@@ -26,7 +25,6 @@ class User::PartiesController < ApplicationController
   private
 
   def party_params
-    movie_title = params[:party][:movie_title]
     params.require(:party).permit(:duration, :when, :time, :movie_title, :attendees)
   end
 end
