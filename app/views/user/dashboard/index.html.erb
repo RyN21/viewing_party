@@ -5,8 +5,8 @@
 <div class="friends">
   <h3>Friends</h3>
   <%= form_tag('/user', method: "post") do %>
-  Add Friend's Email: <%= text_field_tag(:username, :email) %>
-  <%= submit_tag("Add Friends")%>
+    Add Friend's Email: <%= text_field_tag(:username, :email) %>
+    <%= submit_tag("Add Friends")%>
   <%end%>
 </div>
 
@@ -18,7 +18,10 @@
   </un>
 </div>
 
-<div class="viewing_parties">
-  <h3>Viewing Parties</h3>
-  # @viewing_parties.each do
-</div>
+
+<h3>Viewing Parties</h3>
+<% @user.parties.each do |party| %>
+<%= link_to "Party on '#{party.when}'", "/user/parties/#{party.id}" %>
+<%= button_to "Delete Party", "/user/parties/#{party.id}/", method: :delete %>
+</br>
+<% end %>

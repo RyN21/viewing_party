@@ -3,6 +3,7 @@ class Movie
               :genres,
               :title,
               :overview,
+              :runtime,
               :vote_count,
               :vote_average
 
@@ -12,6 +13,7 @@ class Movie
     # need genre ids to proper genres
     @title = attributes[:title]
     @overview = attributes[:overview]
+    @runtime = attributes[:runtime]
     @vote_count = attributes[:vote_count]
     @vote_average = attributes[:vote_average]
   end

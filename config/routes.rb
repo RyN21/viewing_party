@@ -14,5 +14,10 @@ Rails.application.routes.draw do
     get 'movies/:id', to: 'movies#show'
 
     get '/discover', to: 'discover#index'
+
+    get '/parties/:movie_title/new', to: 'parties#new'
+    get '/parties/:party_id', to: 'parties#show'
+    post '/parties', to: 'parties#create'
+    delete '/parties/:party_id', to: 'parties#destroy'
   end
 end

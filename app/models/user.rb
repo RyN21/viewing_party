@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
+  has_many :parties, dependent: :destroy
 
   def self.from_omniauth(access_token)
     user = find_by(uid: access_token.uid)
