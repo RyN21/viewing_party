@@ -21,19 +21,19 @@ RSpec.describe "Friends" do
   it "user can add friend" do
     within '.friends' do
       fill_in :username, with: "#{@user1.username}"
-
       click_button "Add Friend"
     end
+
     within '.friends' do
       fill_in :username, with: "#{@user2.username}"
-
       click_button "Add Friend"
     end
+
     within '.friends' do
       fill_in :username, with: "#{@user3.username}"
-
       click_button "Add Friend"
     end
+    
     expect(current_path).to eq('/user')
     expect(page).to have_content("#{@user1.username}")
   end
