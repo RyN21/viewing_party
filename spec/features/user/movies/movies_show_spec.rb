@@ -32,7 +32,7 @@ RSpec.describe "Discover Page" do
       end
 
       within ".total-votes" do
-        expect(page).to have_content("12309")
+        expect(page).to have_content("Total Votes")
       end
 
       within ".cast" do
@@ -41,7 +41,7 @@ RSpec.describe "Discover Page" do
       end
 
       within ".reviews" do
-        expect(page).to have_content("Review Count: 3")
+        expect(page).to have_content("Review Count")
         expect(page).to have_content("Author: Eky")
         expect(page).to have_content("Gladiator has been my most favorite film of all time.")
       end
