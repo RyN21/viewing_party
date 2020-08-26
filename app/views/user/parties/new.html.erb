@@ -7,7 +7,9 @@
   <%= f.label :duration_in_minutes %>:
   <%= f.text_field :duration %><br />
 
-  <%= f.date_select :when, :order => [:day, :month, :year] %>
+  <%= f.label :date %>:
+  <%= f.date_field :when %>
+  <%= f.time_field :when %>
 
   <%= f.label :attendees %>:
   <%= f.text_field :attendees %><br />

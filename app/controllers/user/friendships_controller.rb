@@ -6,8 +6,7 @@ class User::FriendshipsController < ApplicationController
     if User.where(username: params[:username]).present?
       user = current_user
       friend = User.find_by(username: params[:username])
-      Friendship.create(user: user, friend: friend)
-      Friendship.create(user: friend, friend: user)
+      Friendship.create([{user: user, friend: friend}, {user: friend, friend: user}])
       flash[:notice] = 'Successfully added friend'
       redirect_to user_path
     else
