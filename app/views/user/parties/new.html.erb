@@ -4,16 +4,20 @@
 <%= form_for [:user, @party] do |f| %>
   <%= f.hidden_field :movie_title, :value => @movie_title %> <br/>
 
-  <%= f.label :duration_in_minutes %>:
-  <%= f.text_field :duration %><br/>
+  <b><%= f.label :duration_in_minutes %></b>
+  <%= f.text_field :duration %><br><br>
 
-  <%= f.label :date %>:
+  <b><%= f.label :date %></b>
   <%= f.date_field :when %>
-  <%= f.label :time %>:
-  <%= f.time_field :time %>
 
-  <%= f.label :attendees %>:
-  <%= f.text_field :attendees %><br/>
+  <b><%= f.label :time %></b>
+  <%= f.time_field :time %><br><br>
+
+  <b><%= label_tag :attendees %></b><br><br>
+  <% @current_user.friend_getter.each do |friend| %>
+    <%= friend.email %>
+    <%= check_box_tag "add_friend[]", friend.username %>
+  <% end %></br><br>
 
   <%= f.submit %>
 <% end %>

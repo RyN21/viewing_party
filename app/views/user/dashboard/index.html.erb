@@ -12,8 +12,8 @@
 
 <div>
   <un>
-    <% @user.friend_getter.each do |friend| %>
-      <%= friend.username %>
+    <% @user.friend_getter.each do |friend| %><br>
+      <b><%= friend.username %></b>
     <% end %>
   </un>
 </div>
